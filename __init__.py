@@ -66,27 +66,4 @@ def get_model(
         "cuda"
     )  # The model has been built for CUDA device only.
     model = model.to(device)
-
-    p_path = os.path.join(parent_path, "files/cloud_bin_0.ply")
-    pc1 = o3d.io.read_point_cloud(p_path)
-    p_xyz = np.asarray(pc1.points)
-    p_image_path = os.path.join(parent_path, "files/cloud_bin_0_0.png")
-    p_image = image.imread(p_image_path)
-    if p_image.shape[0] != config.image_H or p_image.shape[1] != config.image_W:
-        p_image = process_image(
-            image=p_image, aim_H=config.image_H, aim_W=config.image_W
-        )
-    p_image = np.transpose(p_image, axes=(2, 0, 1))
-    p_image = np.expand_dims(p_image, axis=0)
-    # warm up model and check for failure
-    p_xyz_down, p_feature = extract_features(
-        model,
-        xyz=p_xyz,
-        rgb=None,
-        normal=None,
-        voxel_size=0.025,
-        device=device,
-        skip_check=True,
-        image=p_image,
-    )
     return model, config
