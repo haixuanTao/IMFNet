@@ -8,7 +8,7 @@ import numpy as np
 import open3d as o3d
 import torch
 
-ROOT_DIR = os.path.abspath(".")
+ROOT_DIR = os.path.abspath(os.path.dirname(__file__))
 if ROOT_DIR not in sys.path:
     sys.path.append(ROOT_DIR)
 
