@@ -12,6 +12,8 @@ ROOT_DIR = os.path.abspath(os.path.dirname(__file__))
 if ROOT_DIR not in sys.path:
     sys.path.append(ROOT_DIR)
 
+import matplotlib.image as image
+
 from model import load_model
 from scripts.benchmark_util import run_ransac
 from util.misc import extract_features
@@ -69,6 +71,7 @@ def get_model(
     pc1 = o3d.io.read_point_cloud(p_path)
     p_xyz = np.asarray(pc1.points)
     p_image_path = os.path.join(parent_path, "files/cloud_bin_0_0.png")
+    p_image = image.imread(p_image_path)
     if p_image.shape[0] != config.image_H or p_image.shape[1] != config.image_W:
         p_image = process_image(
             image=p_image, aim_H=config.image_H, aim_W=config.image_W
