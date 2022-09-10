@@ -7,6 +7,11 @@ import numpy as np
 import open3d as o3d
 import torch
 
+from util.uio import process_image
+from util.pointcloud import (
+    make_open3d_feature_from_numpy,
+    make_open3d_point_cloud,
+)
 from model import load_model
 from scripts.benchmark_util import run_ransac
 from util.misc import extract_features
@@ -77,4 +82,4 @@ def get_model(
         skip_check=True,
         image=p_image,
     )
-    return model
+    return model, config
