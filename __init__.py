@@ -41,7 +41,7 @@ if exists(os.path.join(parent_path, "pretrain.zip")) and not exists(
 
 
 def get_model(
-    checkpoint_path=os.path.join(parent_path, "./pretrain/3DMatch/3DMatch.pth"),
+    checkpoint_path=os.path.join(parent_path, "./pretrain/Kitti/Kitti.pth"),
 ):
 
     # load the model
